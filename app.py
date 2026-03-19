@@ -10,7 +10,7 @@ conn = psycopg2.connect(
     host="localhost",
     database="wholesale_erp",
     user="postgres",
-    password=os.getenv("5588"),
+    password="5588",
     port="5432"
 )
 
