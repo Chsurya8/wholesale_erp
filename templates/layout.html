@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Wholesale ERP</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>ERP</h2>
+
+<a href="/">Dashboard</a>
+<a href="/products">Products</a>
+<a href="/customers">Customers</a>
+<a href="/orders">Orders</a>
+<a href="/analytics">Analytics</a>
+
+</div>
+
+<div class="main">
+
+{% block content %}
+
+{% endblock %}
+
+</div>
+
+</body>
+
+</html>
