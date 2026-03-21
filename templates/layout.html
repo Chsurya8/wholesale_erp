@@ -1,35 +1,120 @@
 <!DOCTYPE html>
 <html>
-
 <head>
+    <title>Wholesale ERP</title>
 
-<title>Wholesale ERP</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #f3f4f6;
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 220px;
+            position: fixed;
+            background-color: #111827;
+            transition: 0.3s;
+        }
+
+        .sidebar.closed {
+            width: 70px;
+        }
+
+        .sidebar h4 {
+            color: white;
+            text-align: center;
+            padding: 50px 0 20px;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            top: 15px;
+            left: 10px;
+            background: #374151;
+            color: white;
+            border-radius: 50%;
+            padding: 6px 10px;
+            cursor: pointer;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            color: #cbd5e1;
+            padding: 12px 15px;
+            text-decoration: none;
+            gap: 10px;
+        }
+
+        .sidebar a:hover {
+            background-color: #374151;
+            color: white;
+        }
+
+        .text {
+            transition: 0.3s;
+        }
+
+        .sidebar.closed .text {
+            display: none;
+        }
+
+        .main {
+            margin-left: 220px;
+            padding: 30px;
+            transition: 0.3s;
+        }
+
+        .main.full {
+            margin-left: 70px;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="sidebar">
+<!-- SIDEBAR -->
+<div id="sidebar" class="sidebar">
 
-<h2>ERP</h2>
+    <div id="toggleBtn" class="toggle-btn" onclick="toggleSidebar()">◀</div>
 
-<a href="/">Dashboard</a>
-<a href="/products">Products</a>
-<a href="/customers">Customers</a>
-<a href="/orders">Orders</a>
-<a href="/analytics">Analytics</a>
+    <h4 class="text">ERP</h4>
+
+    <a href="/"><span>🏠</span> <span class="text">Dashboard</span></a>
+    <a href="/products"><span>📦</span> <span class="text">Products</span></a>
+    <a href="/customers"><span>👥</span> <span class="text">Customers</span></a>
+    <a href="/orders"><span>🧾</span> <span class="text">Orders</span></a>
+    <a href="/sales"><span>📊</span> <span class="text">Sales</span></a>
+
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="main" class="main">
+
+    {% block content %}{% endblock %}
 
 </div>
 
-<div class="main">
+<script>
+function toggleSidebar() {
+    let sidebar = document.getElementById("sidebar");
+    let main = document.getElementById("main");
+    let btn = document.getElementById("toggleBtn");
 
-{% block content %}
+    sidebar.classList.toggle("closed");
+    main.classList.toggle("full");
 
-{% endblock %}
-
-</div>
+    if (sidebar.classList.contains("closed")) {
+        btn.innerHTML = "▶";
+    } else {
+        btn.innerHTML = "◀";
+    }
+}
+</script>
 
 </body>
-
 </html>
