@@ -13,7 +13,7 @@ This project helps businesses manage:
 * Order processing
 * Sales analysis
 
-It is designed with a **clean dashboard UI** and supports basic ERP operations.
+It is designed with a clean dashboard UI and supports basic ERP operations.
 
 ---
 
@@ -29,6 +29,19 @@ It is designed with a **clean dashboard UI** and supports basic ERP operations.
 
 ---
 
+## 🧭 How to Use
+
+| Section    | What to Do                                   |
+| ---------- | -------------------------------------------- |
+| Dashboard  | View overall system summary                  |
+| Products   | Add, search, and delete products             |
+| Customers  | Manage customer details                      |
+| Orders     | Create orders and update stock automatically |
+| Sales      | Analyze sales performance                    |
+| Navigation | Use sidebar to switch between pages          |
+
+---
+
 ## 🛠️ Tech Stack
 
 * Backend: Python (Flask)
@@ -40,7 +53,7 @@ It is designed with a **clean dashboard UI** and supports basic ERP operations.
 
 ## 📂 Project Structure
 
-```bash
+```
 wholesale_erp/
 │── app.py
 │── templates/
@@ -59,46 +72,32 @@ wholesale_erp/
 
 ### 1. Clone Repository
 
-```bash
+```
 git clone https://github.com/Chsurya8/wholesale_erp.git
 cd wholesale_erp
 ```
 
----
-
 ### 2. Install Dependencies
 
-```bash
+```
 pip install -r requirements.txt
 ```
-
----
 
 ### 3. Setup Database
 
 Create PostgreSQL database:
 
-```sql
+```
 CREATE DATABASE wholesale_erp;
 ```
 
-Update connection in `app.py`:
-
-```python
-conn = psycopg2.connect(
-    host="localhost",
-    database="wholesale_erp",
-    user="postgres",
-    password="your_password",
-    port="5432"
-)
-```
+Update connection in `app.py`.
 
 ---
 
 ### 4. Run Application
 
-```bash
+```
 python app.py
 ```
 
@@ -107,6 +106,8 @@ Open:
 ```
 http://127.0.0.1:5000
 ```
+
+---
 
 ## 👨‍💻 Author
 
