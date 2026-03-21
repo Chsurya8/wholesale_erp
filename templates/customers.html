@@ -1,54 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
+{% extends "layout.html" %}
 
-<title>Customers</title>
+{% block content %}
 
-<link rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<style>
+.content-wrapper{ margin:20px; }
+table{ border-collapse: collapse; width:100%; }
+th,td{ border:1px solid #ddd; padding:10px; text-align:center; }
+th{ background:#f2f2f2; }
+input,button{ padding:8px; margin:5px; }
+.add-form{ margin-bottom:30px; }
+.delete{ color:red; text-decoration:none; }
+</style>
 
-</head>
+<div class="content-wrapper">
 
-<body class="bg-light">
+<h1>Customer Management</h1>
 
-<div class="container mt-5">
-
-<h2 class="mb-4">Customer Management</h2>
-
-<div class="card mb-4">
-<div class="card-body">
-
-<form method="POST" class="row g-3">
-
-<div class="col-md-3">
-<input name="name" class="form-control" placeholder="Customer Name" required>
-</div>
-
-<div class="col-md-3">
-<input name="contact" class="form-control" placeholder="Contact" required>
-</div>
-
-<div class="col-md-4">
-<input name="address" class="form-control" placeholder="Address" required>
-</div>
-
-<div class="col-md-2">
-<button class="btn btn-primary w-100">Add Customer</button>
-</div>
-
+<div class="add-form">
+<form method="POST">
+    <input type="text" name="name" placeholder="Customer Name" required>
+    <input type="text" name="contact" placeholder="Contact" required>
+    <input type="text" name="address" placeholder="Address" required>
+    <button type="submit">Add Customer</button>
 </form>
-
-</div>
 </div>
 
-
-<div class="card">
-<div class="card-body">
-
-<table class="table table-striped table-hover">
-
-<thead class="table-dark">
-
+<table>
 <tr>
 <th>ID</th>
 <th>Name</th>
@@ -57,38 +34,20 @@ href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 <th>Action</th>
 </tr>
 
-</thead>
-
-<tbody>
-
 {% for c in customers %}
-
 <tr>
-<td>{{ c[0] }}</td>
-<td>{{ c[1] }}</td>
-<td>{{ c[2] }}</td>
-<td>{{ c[3] }}</td>
-
+<td>{{c[0]}}</td>
+<td>{{c[1]}}</td>
+<td>{{c[2]}}</td>
+<td>{{c[3]}}</td>
 <td>
-<a href="/delete_customer/{{ c[0] }}"
-class="btn btn-danger btn-sm"
-onclick="return confirm('Delete this customer?')">
-Delete
-</a>
+<a class="delete" href="/delete_customer/{{c[0]}}">Delete</a>
 </td>
-
 </tr>
-
 {% endfor %}
-
-</tbody>
 
 </table>
 
 </div>
-</div>
 
-</div>
-
-</body>
-</html>
+{% endblock %}
