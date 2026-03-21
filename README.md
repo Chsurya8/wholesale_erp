@@ -60,7 +60,7 @@ wholesale_erp/
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/wholesale_erp.git
+git clone https://github.com/Chsurya8/wholesale_erp.git
 cd wholesale_erp
 ```
 
@@ -108,40 +108,7 @@ Open:
 http://127.0.0.1:5000
 ```
 
----
-
-## 📊 Screenshots
-
-(Add images here)
-
-Example:
-
-```md
-![Dashboard](images/dashboard.png)
-```
-
----
-
-## 🌐 Deployment
-
-You can deploy this project using:
-
-* Render
-* Railway
-
----
-
-## 🔮 Future Improvements
-
-* Authentication system (login/signup)
-* Advanced analytics dashboard
-* Export reports (PDF/Excel)
-* REST API integration
-* Better UI/UX
-
----
-
 ## 👨‍💻 Author
 
 Surya
-GitHub: https://github.com/YOUR_USERNAME
+GitHub: https://github.com/Chsurya8
