@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>Suppliers</h2>
+
+<form method="POST">
+<input name="name" placeholder="Name" required>
+<input name="contact" placeholder="Contact" required>
+<input name="product" placeholder="Product" required>
+<button>Add</button>
+</form>
+
+<table class="table">
+<tr><th>ID</th><th>Name</th><th>Contact</th><th>Product</th></tr>
+{% for s in suppliers %}
+<tr>
+<td>{{s[0]}}</td>
+<td>{{s[1]}}</td>
+<td>{{s[2]}}</td>
+<td>{{s[3]}}</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}
