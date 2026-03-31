@@ -133,7 +133,7 @@ def orders():
     cur.execute("SELECT * FROM products")
     products = cur.fetchall()
 
-    cur.execute("SELECT * FROM orders ORDER BY order_id DESC")
+    cur.execute("SELECT * FROM orders ORDER BY order_id ASC")
     orders = cur.fetchall()
 
     cur.close()
