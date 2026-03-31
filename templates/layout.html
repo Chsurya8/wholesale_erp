@@ -1,120 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Wholesale ERP</title>
+<title>ERP</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial;
-            background: #f3f4f6;
-        }
-
-        .sidebar {
-            height: 100vh;
-            width: 220px;
-            position: fixed;
-            background-color: #111827;
-            transition: 0.3s;
-        }
-
-        .sidebar.closed {
-            width: 70px;
-        }
-
-        .sidebar h4 {
-            color: white;
-            text-align: center;
-            padding: 50px 0 20px;
-        }
-
-        .toggle-btn {
-            position: absolute;
-            top: 15px;
-            left: 10px;
-            background: #374151;
-            color: white;
-            border-radius: 50%;
-            padding: 6px 10px;
-            cursor: pointer;
-        }
-
-        .sidebar a {
-            display: flex;
-            align-items: center;
-            color: #cbd5e1;
-            padding: 12px 15px;
-            text-decoration: none;
-            gap: 10px;
-        }
-
-        .sidebar a:hover {
-            background-color: #374151;
-            color: white;
-        }
-
-        .text {
-            transition: 0.3s;
-        }
-
-        .sidebar.closed .text {
-            display: none;
-        }
-
-        .main {
-            margin-left: 220px;
-            padding: 30px;
-            transition: 0.3s;
-        }
-
-        .main.full {
-            margin-left: 70px;
-        }
-    </style>
+<style>
+body{margin:0;background:#f3f4f6;}
+.sidebar{width:220px;height:100vh;background:#111827;position:fixed;}
+.sidebar a{color:#cbd5e1;display:block;padding:12px;text-decoration:none;}
+.sidebar a:hover{background:#374151;color:white;}
+.main{margin-left:220px;padding:20px;}
+</style>
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
-<div id="sidebar" class="sidebar">
-
-    <div id="toggleBtn" class="toggle-btn" onclick="toggleSidebar()">◀</div>
-
-    <h4 class="text">ERP</h4>
-
-    <a href="/"><span>🏠</span> <span class="text">Dashboard</span></a>
-    <a href="/products"><span>📦</span> <span class="text">Products</span></a>
-    <a href="/customers"><span>👥</span> <span class="text">Customers</span></a>
-    <a href="/orders"><span>🧾</span> <span class="text">Orders</span></a>
-    <a href="/sales"><span>📊</span> <span class="text">Sales</span></a>
-
+<div class="sidebar">
+<h4 class="text-white text-center mt-4">ERP</h4>
+<a href="/">Dashboard</a>
+<a href="/products">Products</a>
+<a href="/customers">Customers</a>
+<a href="/orders">Orders</a>
+<a href="/suppliers">Suppliers</a>
+<a href="/sales">Sales</a>
 </div>
 
-<!-- MAIN CONTENT -->
-<div id="main" class="main">
+<div class="main">
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="alert alert-warning" role="alert">
+      {% for msg in messages %}
+        <div>{{ msg }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
 
-    {% block content %}{% endblock %}
-
+{% block content %}{% endblock %}
 </div>
-
-<script>
-function toggleSidebar() {
-    let sidebar = document.getElementById("sidebar");
-    let main = document.getElementById("main");
-    let btn = document.getElementById("toggleBtn");
-
-    sidebar.classList.toggle("closed");
-    main.classList.toggle("full");
-
-    if (sidebar.classList.contains("closed")) {
-        btn.innerHTML = "▶";
-    } else {
-        btn.innerHTML = "◀";
-    }
-}
-</script>
 
 </body>
 </html>

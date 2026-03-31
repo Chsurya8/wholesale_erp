@@ -7,21 +7,21 @@
 <div class="row g-4">
 
     <div class="col-md-4">
-        <div class="card p-4 text-center">
+        <div class="card p-4 text-center shadow-sm">
             <h5>Total Products</h5>
             <h3 class="text-primary">{{ total_products }}</h3>
         </div>
     </div>
 
     <div class="col-md-4">
-        <div class="card p-4 text-center">
+        <div class="card p-4 text-center shadow-sm">
             <h5>Total Customers</h5>
             <h3 class="text-success">{{ total_customers }}</h3>
         </div>
     </div>
 
     <div class="col-md-4">
-        <div class="card p-4 text-center">
+        <div class="card p-4 text-center shadow-sm">
             <h5>Total Orders</h5>
             <h3 class="text-danger">{{ total_orders }}</h3>
         </div>
@@ -29,27 +29,25 @@
 
 </div>
 
-<div class="btn-area">
+<!-- ACTION BUTTONS -->
+<div class="mt-5 d-flex flex-wrap gap-3">
 
-<a href="/products" class="btn btn-primary nav-btn">
-Product Management
-</a>
+    <a href="/products" class="btn btn-primary">
+        Product Management
+    </a>
 
-<a href="/customers" class="btn btn-success nav-btn">
-Customer Management
-</a>
+    <a href="/customers" class="btn btn-success">
+        Customer Management
+    </a>
 
-<a href="/orders" class="btn btn-warning nav-btn">
-Order Management
-</a>
+    <a href="/orders" class="btn btn-warning">
+        Order Management
+    </a>
 
-<a href="/sales" class="btn btn-dark nav-btn">
-Sales Analysis
-</a>
+    <a href="/sales" class="btn btn-dark">
+        Sales Analysis
+    </a>
 
 </div>
 
-</div>
-
-</body>
-</html>
+{% endblock %}

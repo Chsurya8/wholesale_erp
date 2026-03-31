@@ -9,21 +9,20 @@
     margin: 20px;
 }
 
-/* ✅ CHART SIZE CONTROL */
+/* SMALL GRAPH */
 .chart-box {
-    width: 60%;
+    width: 55%;
     margin: 30px auto;
 }
 
 .chart-box canvas {
-    width: 100% !important;
-    height: 300px !important;
+    height: 280px !important;
     background: white;
-    padding: 15px;
+    padding: 10px;
     border-radius: 10px;
 }
 
-/* ✅ TABLE STYLE (same as your original) */
+/* TABLE STYLE */
 table {
     border-collapse: collapse;
     width: 100%;
@@ -45,7 +44,7 @@ th {
 
 <h1>Sales Analysis</h1>
 
-<!-- ✅ SMALL BAR CHART -->
+<!-- ✅ GRAPH -->
 <h3>Top Selling Products</h3>
 
 <div class="chart-box">
@@ -53,11 +52,11 @@ th {
 </div>
 
 <!-- ✅ TABLE 1 -->
-<h3>Top Products Table</h3>
+<h3>Top Products</h3>
 <table>
 <tr>
 <th>Product</th>
-<th>Total Sold</th>
+<th>Sold</th>
 </tr>
 
 {% for t in top_products %}
@@ -88,36 +87,27 @@ th {
 
 </div>
 
-<!-- ✅ SAFE JSON DATA (NO VS CODE ERROR) -->
-<script id="chart-data" type="application/json">
+<!-- ✅ SAFE JSON BLOCK (THIS FIXES YOUR ERROR) -->
+<script type="application/json" id="chartData">
 {
     "labels": {{ product_names | safe }},
-    "data": {{ product_values | safe }}
+    "values": {{ product_values | safe }}
 }
 </script>
 
 <script>
+const chartRaw = document.getElementById("chartData").textContent;
+const chart = JSON.parse(chartRaw);
 
-// ✅ READ DATA SAFELY
-const rawData = document.getElementById("chart-data").textContent;
-const parsedData = JSON.parse(rawData);
+const labels = chart.labels.length ? chart.labels : ["No Data"];
+const data = chart.values.length ? chart.values : [0];
 
-let labels = parsedData.labels;
-let data = parsedData.data;
-
-// fallback if empty
-if(labels.length === 0){
-    labels = ["No Data"];
-    data = [0];
-}
-
-// ✅ BAR CHART
 new Chart(document.getElementById("barChart"), {
-    type: 'bar',
+    type: "bar",
     data: {
         labels: labels,
         datasets: [{
-            label: 'Products Sold',
+            label: "Products Sold",
             data: data
         }]
     },
@@ -125,8 +115,6 @@ new Chart(document.getElementById("barChart"), {
         responsive: true
     }
 });
-
 </script>
 
-</body>
-</html>
+{% endblock %}
