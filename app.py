@@ -119,11 +119,37 @@ def orders():
     cur = conn.cursor()
 
     if request.method == "POST":
-        cur.execute("CALL create_order(%s,%s,%s)", (
-            request.form["customer"],
-            request.form["product"],
-            request.form["quantity"]
-        ))
+        customer_id = int(request.form["customer"])
+        product_id = int(request.form["product"])
+        quantity = int(request.form["quantity"])
+
+        cur.execute("SELECT price FROM products WHERE product_id = %s", (product_id,))
+        price_row = cur.fetchone()
+        if not price_row:
+            flash("Selected product does not exist.")
+            cur.close()
+            conn.close()
+            return redirect("/orders")
+
+        price = price_row[0]
+        total_amount = price * quantity
+
+        cur.execute(
+            "INSERT INTO orders(customer_id, order_date, total_amount) VALUES (%s, CURRENT_DATE, %s) RETURNING order_id",
+            (customer_id, total_amount)
+        )
+        order_id = cur.fetchone()[0]
+
+        cur.execute(
+            "INSERT INTO order_items(order_id, product_id, quantity, price) VALUES (%s, %s, %s, %s)",
+            (order_id, product_id, quantity, price)
+        )
+
+        cur.execute(
+            "UPDATE products SET stock_quantity = stock_quantity - %s WHERE product_id = %s",
+            (quantity, product_id)
+        )
+
         conn.commit()
         return redirect("/orders")
 
@@ -133,7 +159,7 @@ def orders():
     cur.execute("SELECT * FROM products")
     products = cur.fetchall()
 
-    cur.execute("SELECT * FROM orders ORDER BY order_id ASC")
+    cur.execute("SELECT * FROM orders ORDER BY order_id DESC LIMIT 100")
     orders = cur.fetchall()
 
     cur.close()

@@ -153,7 +153,9 @@ AS $$
 DECLARE price_val DECIMAL;
 DECLARE new_order INT;
 BEGIN
-    SELECT price INTO price_val FROM products WHERE product_id = p_id;
+    SELECT p.price INTO price_val
+    FROM products p
+    WHERE p.product_id = p_id;
 
     INSERT INTO orders(customer_id, order_date, total_amount)
     VALUES (c_id, CURRENT_DATE, price_val * qty)

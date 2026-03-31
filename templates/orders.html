@@ -42,10 +42,13 @@ input,select,button{ padding:8px; margin:5px; }
 
 </div>
 
+<p><strong>Showing latest 100 orders from the database.</strong></p>
+
 <table>
 
 <tr>
-<th>ID</th>
+<th>No</th>
+<th>Order ID</th>
 <th>Customer ID</th>
 <th>Date</th>
 <th>Total</th>
@@ -54,12 +57,13 @@ input,select,button{ padding:8px; margin:5px; }
 
 {% for o in orders %}
 <tr>
-<td>{{o[0]}}</td>
-<td>{{o[1]}}</td>
-<td>{{o[2]}}</td>
-<td>{{o[3]}}</td>
+<td>{{ loop.index }}</td>
+<td>{{ o[0] }}</td>
+<td>{{ o[1] }}</td>
+<td>{{ o[2] }}</td>
+<td>{{ o[3] }}</td>
 <td>
-<a class="delete" href="/delete_order/{{o[0]}}">Delete</a>
+<a class="delete" href="/delete_order/{{ o[0] }}">Delete</a>
 </td>
 </tr>
 {% endfor %}
